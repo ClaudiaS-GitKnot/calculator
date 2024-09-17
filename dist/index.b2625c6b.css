@@ -1,0 +1,110 @@
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: Calculator;
+  src: url("Digital7-rg1mL.2b577bfd.ttf"), url("Digital7Italic-BW658.f87cf3bd.ttf"), url("Digital7Mono-Yz9J4.f05d27ce.ttf"), url("Digital7Monoitalic-8MDLJ.b25a9ef2.ttf");
+}
+
+body {
+  background-color: #f4f4f4;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  font-family: Calculator, "sans-serif";
+  display: flex;
+}
+
+#calculator {
+  background-color: #333333da;
+  border-radius: 10px;
+  width: 400px;
+  height: 500px;
+  margin: 30px 0;
+  padding: 20px;
+  box-shadow: 0 0 40px #000;
+}
+
+section {
+  grid-gap: 1px;
+  grid-template-columns: [col1] 25%[col2] 25%[col3] 25%[col4] 25%;
+  width: 100%;
+  height: 100%;
+  display: grid;
+}
+
+.display {
+  color: #fff;
+  text-align: right;
+  background-color: #000;
+  border-radius: 10px;
+  grid-column: 1 / 5;
+  align-content: center;
+  padding: 10px;
+  font-size: 3.5rem;
+}
+
+section:nth-child(6), section:nth-child(9), section:nth-child(12), section:nth-child(15) {
+  grid-column: 1 / 2;
+}
+
+section:nth-child(7), section:nth-child(10), section:nth-child(13) {
+  grid-column: 2 / 3;
+}
+
+section:nth-child(8), section:nth-child(11), section:nth-child(14) {
+  grid-column: 3 / 4;
+}
+
+button[data-action="equals"] {
+  background-color: #f90;
+  grid-area: 3 / 4 / 7 / 5;
+}
+
+button[data-action="equals"]:hover {
+  background-color: #f90;
+  border: 1px solid #000;
+  box-shadow: 0 0 5px #000;
+}
+
+button {
+  color: #fff;
+  cursor: pointer;
+  background-color: #777;
+  border: none;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 3rem;
+  transition: background-color .3s;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+@media only screen and (width >= 768px) {
+  #calculator {
+    width: 50vw;
+    height: 85vh;
+  }
+}
+
+@media only screen and (width <= 767px) {
+  #calculator {
+    width: 60vw;
+    height: 80vh;
+  }
+
+  button {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (width <= 767px) and (orientation: portrait) {
+  #calculator {
+    height: 60vh;
+  }
+}
+/*# sourceMappingURL=index.b2625c6b.css.map */
