@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let currentInput = '0';
   let operator = '';
   let previousInput = '';
+  let resultDisplayed = false;
 
   buttons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -23,10 +24,17 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   function handleNumber(buttonValue) {
-    if (currentInput === '0' && buttonValue !== '.') {
+    if (resultDisplayed) {
       currentInput = buttonValue;
+      resultDisplayed = false;
     } else {
-      currentInput = buttonValue;
+      if (currentInput === '0' && buttonValue !== '.') {
+        currentInput = buttonValue;
+      } else if (currentInput.includes('.') && buttonValue === '.') {
+        return;
+      } else {
+        currentInput += buttonValue;
+      }
     }
     displayUpdate(currentInput);
   }
@@ -36,11 +44,15 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function handleOperator(buttonValue) {
-    if (currentInput) {
+    if (resultDisplayed) {
       previousInput = currentInput;
       currentInput = '';
-      operator = buttonValue;
+      resultDisplayed = false;
+    } else if (currentInput) {
+      previousInput = currentInput;
+      currentInput = '';
     }
+    operator = buttonValue;
   }
 
   function calculate() {
@@ -74,12 +86,14 @@ document.addEventListener('DOMContentLoaded', function () {
     currentInput = result.toString();
     operator = '';
     displayUpdate(currentInput);
+    resultDisplayed = true;
   }
 
   function clear() {
     currentInput = '0';
     previousInput = '';
     operator = '';
+    resultDisplayed = false;
     displayUpdate(currentInput);
   }
 });
